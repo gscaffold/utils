@@ -1,0 +1,63 @@
+version: "2"
+
+output:
+  formats:
+    text:
+      path: golangci.out
+
+linters-settings:
+  govet:
+    check-shadowing: true
+  golint:
+    min-confidence: 0
+  gocyclo:
+    min-complexity: 15
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  misspell:
+    locale: US
+  lll:
+    line-length: 120
+  maligned:
+    suggest-new: true
+  gocritic:
+    enabled-checks:
+      # diagnostic 类别常用检查
+      - rangeValCopy
+      - boolExprSimplify
+      - appendAssign
+      # performance 类别常用检查
+      - hugeParam
+      - makeWithCap
+      # style 类别常用检查
+      - recurLoop
+      - ifElseChain
+      - repeatedIfElse
+
+linters:
+  enable-all: true
+  disable:
+    - gochecknoglobals   # 不强制要求无全局变量
+    - gochecknoinits     # 不强制要求无 init 函数
+    - godox              # 忽略 TODO/FIXME 检查
+    - wsl                # 忽略空白行检查
+    - funlen             # 不限制函数长度
+    - nlreturn           # 不强制 return 前后空行
+    - testpackage        # 测试包命名不强制
+    - noctx              # 不强制所有函数都接受 context.Context
+    - gosec              # 可选：暂时不启用安全扫描，如有需要可取消注释
+
+issues:
+  exclude:
+    - whyNoLint                      # 忽略 nolint 注释无说明
+    - use underscores in Go names    # 不强制变量命名风格
+    - make it a constant             # 不强制将字符串常量化
+    - weak cryptographic primitive   # 不强制避免弱加密算法（如 md5）
+  exclude-dirs:
+    - vendor
+
+severity:
+  default: info

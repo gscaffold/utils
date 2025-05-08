@@ -41,7 +41,7 @@ formatters:
     - goimports
     - golines
 
-issues:
+# issues:
   # new: true
 
 severity:

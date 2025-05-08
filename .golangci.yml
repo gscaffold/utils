@@ -42,13 +42,7 @@ formatters:
     - golines
 
 issues:
-  exclude:
-    - whyNoLint                      # 忽略 nolint 注释无说明
-    - use underscores in Go names    # 不强制变量命名风格
-    - make it a constant             # 不强制将字符串常量化
-    - weak cryptographic primitive   # 不强制避免弱加密算法（如 md5）
-  exclude-dirs:
-    - vendor
+  # new: true
 
 severity:
   default: error

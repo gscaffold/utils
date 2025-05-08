@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -20,10 +20,29 @@ jobs:
       with:
         go-version: stable
 
-    - name: golangci-lint
+    - name: Install dependencies
+      run: go get .
+
+    - name: Test with Go
+      run: go test -json > TestResults-${{ matrix.go-version }}.json
+
+    - name: Upload Go test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: Go-results-${{ matrix.go-version }}
+        path: TestResults-${{ matrix.go-version }}.json
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: stable
+
+    - name: golangci lint
       uses: golangci/golangci-lint-action@v8
       with:
         version: latest
-
-    - name: Test
-      run: make test

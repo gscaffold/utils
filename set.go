@@ -93,7 +93,7 @@ func (s *SafeSet[T]) Intersect(s2 *SafeSet[T]) *SafeSet[T] {
 	result := NewSafeSet[T]()
 	s.data.Range(func(key, _ interface{}) bool {
 		if _, ok := s2.data.Load(key); ok {
-			result.Add(key.(T))
+			result.Add(key.(T)) //nolint:forcetypeassert
 		}
 		return true
 	})
@@ -103,11 +103,11 @@ func (s *SafeSet[T]) Intersect(s2 *SafeSet[T]) *SafeSet[T] {
 func (s *SafeSet[T]) Union(s2 *SafeSet[T]) *SafeSet[T] {
 	result := NewSafeSet[T]()
 	s.data.Range(func(key, _ interface{}) bool {
-		result.Add(key.(T))
+		result.Add(key.(T)) //nolint:forcetypeassert
 		return true
 	})
 	s2.data.Range(func(key, _ interface{}) bool {
-		result.Add(key.(T))
+		result.Add(key.(T)) //nolint:forcetypeassert
 		return true
 	})
 
@@ -117,7 +117,7 @@ func (s *SafeSet[T]) Union(s2 *SafeSet[T]) *SafeSet[T] {
 func (s *SafeSet[T]) ToList() []T {
 	keys := []T{}
 	s.data.Range(func(key, _ interface{}) bool {
-		keys = append(keys, key.(T))
+		keys = append(keys, key.(T)) //nolint:forcetypeassert
 		return true
 	})
 	return keys

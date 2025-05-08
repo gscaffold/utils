@@ -4,7 +4,10 @@ import (
 	"encoding/json"
 )
 
-func ToJSONStr(v interface{}) string {
-	data, _ := json.Marshal(v)
+func ToJSONStr(v any) string {
+	if v == nil {
+		return ""
+	}
+	data, _ := json.Marshal(v) //nolint:errchkjson
 	return string(data)
 }

@@ -14,20 +14,20 @@ const (
 func UnixStrToTime(e string) (time.Time, error) {
 	data, err := strconv.ParseInt(e, 10, 64)
 	if err != nil {
-		return time.Time{}, err
+		return time.Time{}, err //nolint:wrapcheck
 	}
 	dateTime := time.Unix(data, 0).Local()
-	return dateTime, err
+	return dateTime, nil
 }
 
 // 毫秒级时间戳字符串转换为时间结构体
 func UnixMillStrToTime(e string) (time.Time, error) {
 	data, err := strconv.ParseInt(e, 10, 64)
 	if err != nil {
-		return time.Time{}, err
+		return time.Time{}, err //nolint:wrapcheck
 	}
 	dateTime := time.Unix(data/1000, 0).Local()
-	return dateTime, err
+	return dateTime, nil
 }
 
 // GetRelativeTime 将一个秒级时间戳转换为相对当前时间的友好字符串表示。

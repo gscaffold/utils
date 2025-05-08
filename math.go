@@ -27,13 +27,13 @@ func Min[T Ordered](values ...T) T {
 		return zero // 如果没有输入值，返回类型的零值
 	}
 
-	min := values[0]
+	minValue := values[0]
 	for _, v := range values[1:] {
-		if v < min { // 利用 comparable 约束进行直接比较
-			min = v
+		if v < minValue { // 利用 comparable 约束进行直接比较
+			minValue = v
 		}
 	}
-	return min
+	return minValue
 }
 
 func Max[T Ordered](values ...T) T {
@@ -42,11 +42,11 @@ func Max[T Ordered](values ...T) T {
 		return zero // 如果没有输入值，返回类型的零值
 	}
 
-	min := values[0]
+	maxValue := values[0]
 	for _, v := range values[1:] {
-		if v > min { // 利用 comparable 约束进行直接比较
-			min = v
+		if v > maxValue { // 利用 comparable 约束进行直接比较
+			maxValue = v
 		}
 	}
-	return min
+	return maxValue
 }

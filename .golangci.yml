@@ -17,6 +17,21 @@ linters:
     - testpackage        # 测试包命名不强制
     - noctx              # 不强制所有函数都接受 context.Context
     - gosec              # 可选：暂时不启用安全扫描，如有需要可取消注释
+    - godot              # 不检查标点符号
+    - gosmopolitan       # 暂时不需要国际化
+    - paralleltest       # 不强制测试函数使用 parallel
+    - varnamelen         # 暂时不检查变量命名长度
+    - ireturn
+  exclusions:
+    presets:
+      - comments
+      - std-error-handling
+      - common-false-positives
+      - legacy
+    rules:
+      - linters:
+        - mnd
+        text: "Magic number"
 
 formatters:
   enable:
@@ -36,4 +51,4 @@ issues:
     - vendor
 
 severity:
-  default: warning
+  default: error

@@ -16,6 +16,7 @@ func IsProd() bool {
 func IsStage() bool {
 	return GetEnv() == EnvironmentStage
 }
+
 func IsTest() bool {
 	return GetEnv() == EnvironmentTest
 }

@@ -79,11 +79,11 @@ func TestSet_Union(t *testing.T) {
 
 func TestSafeSet(t *testing.T) {
 	set := NewSafeSet[int]()
-	max := 100000
+	maxValue := 100000
 	wg := sync.WaitGroup{}
 	wg.Add(3)
 	fn := func() {
-		for i := 0; i < max; i++ {
+		for i := 0; i < maxValue; i++ {
 			set.Add(i)
 		}
 		wg.Done()
@@ -94,8 +94,8 @@ func TestSafeSet(t *testing.T) {
 	wg.Wait()
 
 	l := set.ToList()
-	if len(l) != max {
-		t.Errorf("set.ToList() len=%d, want %d", len(l), max)
+	if len(l) != maxValue {
+		t.Errorf("set.ToList() len=%d, want %d", len(l), maxValue)
 	}
 	sort.Slice(l, func(i, j int) bool {
 		return l[i] < l[j]

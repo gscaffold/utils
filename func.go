@@ -12,7 +12,7 @@ func SafeRun(fn func()) (err error) {
 			if e, ok := r.(error); ok {
 				err = fmt.Errorf("%w\n%s", e, string(debug.Stack()))
 			} else {
-				err = fmt.Errorf("unknown panic\n%s", string(debug.Stack()))
+				err = fmt.Errorf("unknown panic\n%s", string(debug.Stack())) //nolint:err113
 			}
 		}
 	}()
@@ -28,7 +28,7 @@ func SafeRunWithError(fn func() error) (err error) {
 			if e, ok := r.(error); ok {
 				err = fmt.Errorf("%w\n%s", e, string(debug.Stack()))
 			} else {
-				err = fmt.Errorf("unknown panic\n%s", string(debug.Stack()))
+				err = fmt.Errorf("unknown panic\n%s", string(debug.Stack())) //nolint:err113
 			}
 		}
 	}()

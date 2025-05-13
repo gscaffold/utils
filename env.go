@@ -9,22 +9,31 @@ const (
 	EnvironmentProd  = "prod"
 )
 
+var (
+	app = os.Getenv("APP_NAME")
+	env = os.Getenv("APP_ENV")
+)
+
 func IsProd() bool {
-	return GetEnv() == EnvironmentProd
+	return env == EnvironmentProd
 }
 
 func IsStage() bool {
-	return GetEnv() == EnvironmentStage
+	return env == EnvironmentStage
 }
 
 func IsTest() bool {
-	return GetEnv() == EnvironmentTest
+	return env == EnvironmentTest
 }
 
 func IsLocal() bool {
-	return GetEnv() == EnvironmentLocal
+	return env == EnvironmentLocal
 }
 
 func GetEnv() string {
-	return os.Getenv("env")
+	return env
+}
+
+func GetApp() string {
+	return app
 }
